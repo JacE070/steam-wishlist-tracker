@@ -1,6 +1,6 @@
 # Steam-wishlist-tracker
 
-## About
+Steam Wishlist Tracker is a website that keeps tracking of added games for users, and remind the best time to buy them according to the price trending, review trending, etc.
 
 ## Getting Started
 
