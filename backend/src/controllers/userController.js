@@ -89,10 +89,32 @@ exports.loginUser = async (req, res) => {
 	}
 };
 
-// Get user profile
-exports.getUserProfile = async (req, res) => {
-	// Implement logic to retrieve user profile here
-	res.status(200).send("User profile");
-};
+exports.updateSteamId = async (req, res) => {
+	// TODO: Add validation to ensure steamId is valid
+	try {
+		const { steamId } = req.body;
 
-// Add any other user-related methods as needed.
+		if (!steamId) {
+			return res.status(400).json({ msg: "No Steam ID provided" });
+		}
+
+		console.log(steamId);
+
+		// Check if user exists
+		let user = await User.findById(req.user.id);
+		if (!user) {
+			return res.status(400).json({ msg: "User not found" });
+		}
+
+		// Update user steamId
+		user.steamId = steamId;
+
+		// Save user to database
+		await user.save();
+
+		res.json({ msg: "Steam ID updated" });
+	} catch (err) {
+		console.error(err);
+		res.status(500).send("Server error");
+	}
+};

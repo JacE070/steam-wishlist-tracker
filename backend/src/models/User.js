@@ -1,6 +1,5 @@
 // Import the necessary module from mongoose
 const mongoose = require("mongoose");
-const bcrypt = require("bcryptjs");
 
 // Define the user schema
 const userSchema = new mongoose.Schema({
@@ -26,12 +25,19 @@ const userSchema = new mongoose.Schema({
 		// Do not return password by default
 		select: false,
 	},
-	// Add any additional fields as required
+	steamId: {
+		type: String,
+		unique: true,
+	},
+	// an array of game ids that the user has added to their wishlist
+	wishlist: {
+		type: [String],
+		default: [],
+	},
 	createdAt: {
 		type: Date,
 		default: Date.now,
 	},
-	// You could also add fields for password reset tokens, profile pictures, etc.
 });
 
 // Create the model from the schema and export it
