@@ -29,11 +29,6 @@ const userSchema = new mongoose.Schema({
 		type: String,
 		unique: true,
 	},
-	// an array of game ids that the user has added to their wishlist
-	wishlist: {
-		type: [String],
-		default: [],
-	},
 	createdAt: {
 		type: Date,
 		default: Date.now,

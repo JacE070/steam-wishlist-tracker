@@ -98,8 +98,6 @@ exports.updateSteamId = async (req, res) => {
 			return res.status(400).json({ msg: "No Steam ID provided" });
 		}
 
-		console.log(steamId);
-
 		// Check if user exists
 		let user = await User.findById(req.user.id);
 		if (!user) {

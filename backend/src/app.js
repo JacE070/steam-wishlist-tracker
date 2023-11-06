@@ -6,6 +6,18 @@ const auth = require("./middlewares/authMiddleware");
 const app = express();
 app.use(json()); // for parsing application/json
 
+// Redirect to https
+app.use((req, res, next) => {
+	if (
+		req.header("x-forwarded-proto") !== "https" &&
+		process.env.NODE_ENV === "production"
+	) {
+		res.redirect(`https://${req.header("host")}${req.url}`);
+	} else {
+		next();
+	}
+});
+
 // Connect to the database
 connectDatabase();
 
