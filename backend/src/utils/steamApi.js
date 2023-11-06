@@ -12,7 +12,7 @@ exports.getSteamWishlist = async (steamId) => {
 	}
 };
 
-exports.getGameDealsInfo = async (appIds) => {
+exports.getGameDeals = async (appIds) => {
 	// TODO: In order to handle case that total results excceeds 60, we need to make multiple requests
 	try {
 		const gameDealsUrl = `https://www.cheapshark.com/api/1.0/deals?storeID=1&steamAppID=${appIds.join(

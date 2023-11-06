@@ -1,4 +1,4 @@
-const { getSteamWishlist, getGameDealsInfo } = require("../utils/steamApi");
+const { getSteamWishlist, getGameDeals } = require("../utils/steamApi");
 
 exports.getWishlist = async (req, res) => {
 	try {
@@ -12,7 +12,7 @@ exports.getWishlist = async (req, res) => {
 		const appIds = Object.keys(wishlist);
 
 		// Get the games info from the appIds
-		const gamesInfo = await getGameDealsInfo(appIds);
+		const gamesInfo = await getGameDeals(appIds);
 
 		// Send the games info to the client
 		res.json(gamesInfo);
