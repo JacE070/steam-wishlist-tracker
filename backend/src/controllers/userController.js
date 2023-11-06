@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 // Handle user registration
 exports.registerUser = async (req, res) => {
 	try {
-		const { username, email, password } = req.body;
+		const { email, password } = req.body;
 
 		// Check if user already exists
 		let user = await User.findOne({ email });
@@ -16,7 +16,6 @@ exports.registerUser = async (req, res) => {
 
 		// Create new user
 		user = new User({
-			username,
 			email,
 			password,
 		});
@@ -111,6 +110,26 @@ exports.updateSteamId = async (req, res) => {
 		await user.save();
 
 		res.json({ msg: "Steam ID updated" });
+	} catch (err) {
+		console.error(err);
+		res.status(500).send("Server error");
+	}
+};
+
+exports.updateUsername = async (req, res) => {
+	try {
+		const { username } = req.body;
+
+		let user = await User.findById(req.user.id);
+		if (!user) {
+			return res.status(400).json({ msg: "User not found" });
+		}
+
+		user.username = username;
+
+		await user.save();
+
+		res.json({ msg: "Username updated" });
 	} catch (err) {
 		console.error(err);
 		res.status(500).send("Server error");

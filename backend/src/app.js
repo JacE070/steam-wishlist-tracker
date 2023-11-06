@@ -1,10 +1,12 @@
 const express = require("express");
 const { json } = require("express");
+const cors = require("cors");
 const connectDatabase = require("./utils/mongodb");
 const auth = require("./middlewares/authMiddleware");
 
 const app = express();
 app.use(json()); // for parsing application/json
+app.use(cors()); // for cors error
 
 // Redirect to https
 app.use((req, res, next) => {

@@ -3,12 +3,6 @@ const mongoose = require("mongoose");
 
 // Define the user schema
 const userSchema = new mongoose.Schema({
-	username: {
-		type: String,
-		required: [true, "Please provide a username"],
-		unique: true,
-		trim: true,
-	},
 	email: {
 		type: String,
 		required: [true, "Please provide an email address"],
@@ -17,6 +11,10 @@ const userSchema = new mongoose.Schema({
 		lowercase: true,
 		// Add validation to ensure email format
 		match: [/.+\@.+\..+/, "Please fill a valid email address"],
+	},
+	username: {
+		type: String,
+		trim: true,
 	},
 	password: {
 		type: String,
