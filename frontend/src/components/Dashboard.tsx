@@ -12,13 +12,7 @@ import {
 	Grid,
 	Button,
 } from "@mui/material";
-
-// Placeholder for user's wishlist items
-const wishlistItems = [
-	{ id: 1, title: "Game 1", price: "$19.99", onSale: true },
-	{ id: 2, title: "Game 2", price: "$29.99", onSale: false },
-	// ...more items
-];
+import Wishlist from "./wishlist/Wishlist";
 
 const Dashboard: React.FC = () => {
 	const isLoggedIn = localStorage.getItem("token"); // or use context/state management
@@ -47,26 +41,7 @@ const Dashboard: React.FC = () => {
 			</AppBar>
 			<Container maxWidth="lg">
 				<Box my={4}>
-					<Typography variant="h4" component="h1" gutterBottom>
-						Your Wishlist
-					</Typography>
-					<Grid container spacing={3}>
-						{wishlistItems.map((item) => (
-							<Grid item xs={12} sm={6} md={4} key={item.id}>
-								<Card variant="outlined">
-									<CardContent>
-										<Typography variant="h5" component="h2">
-											{item.title}
-										</Typography>
-										<Typography color={item.onSale ? "error" : "textPrimary"}>
-											{item.price}
-										</Typography>
-										{/* Add more details like game image, description, etc. */}
-									</CardContent>
-								</Card>
-							</Grid>
-						))}
-					</Grid>
+					<Wishlist />
 				</Box>
 			</Container>
 		</>
